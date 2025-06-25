@@ -1,0 +1,52 @@
+{
+    "name": "@lukaswestholt/semantic-release-skopeo",
+    "version": "0.0.0-semantically-released",
+    "description": "This is a plugin for semantic-release that copies OCI images to a custom registry using daemonless open-source tool skopeo.",
+    "main": "index.mjs",
+    "type": "module",
+    "engines": {
+        "node": ">=20.8.1"
+    },
+    "scripts": {
+        "test": "docker compose build --no-cache && docker compose up --attach test-suite-prepare-publish --abort-on-container-exit && docker compose logs test-suite-verify-conditions",
+        "lint": "eslint ."
+    },
+    "keywords": [
+        "semantic-release",
+        "skopeo",
+        "dockerless",
+        "daemonless",
+        "container",
+        "ci",
+        "cd"
+    ],
+    "author": "Lukas Westholt <support@lukaswestholt.de>",
+    "license": "MIT",
+    "dependencies": {
+        "@semantic-release/error": "^4.0.0",
+        "execa": "^9.3.0"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.8.0",
+        "@semantic-release/release-notes-generator": "^14.0.1",
+        "chai": "^5.1.1",
+        "eslint": "^9.8.0",
+        "eslint-config-prettier": "^9.1.0",
+        "eslint-plugin-prettier": "^5.2.1",
+        "globals": "^15.9.0",
+        "mocha": "^10.7.0",
+        "prettier": "^3.3.3",
+        "semantic-release": "^24.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lukaswestholt/semantic-release-skopeo.git"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "bugs": {
+        "url": "https://github.com/lukaswestholt/semantic-release-skopeo/issues"
+    },
+    "homepage": "https://github.com/lukaswestholt/semantic-release-skopeo#readme"
+}
