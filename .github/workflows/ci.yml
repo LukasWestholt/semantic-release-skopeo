@@ -108,7 +108,7 @@ jobs:
               push: false
               load: true
               target: base
-              tags: $IMAGE_NAME:latest
+              tags: ${{ env.IMAGE_NAME }}:latest
           - name: Set up Node.js
             uses: actions/setup-node@v2
             with:
