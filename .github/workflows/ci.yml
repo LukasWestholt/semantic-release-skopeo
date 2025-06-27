@@ -28,7 +28,7 @@ jobs:
         run: npm run lint
 
   test:
-      name: Verify Conditions Test and Prepare Publish Test
+      name: Run all tests
       runs-on: ubuntu-latest
       needs: [lint]
       services:
@@ -50,7 +50,7 @@ jobs:
           uses: addnab/docker-run-action@v3
           with:
             image: test-image:latest
-            run: npm run test # necessary
+            run: npm run test # necessary option in this action
             options: --env NODE_ENV=test
 
   build-image:

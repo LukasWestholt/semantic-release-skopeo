@@ -64,4 +64,18 @@ describe('Verify Conditions', () => {
         const pluginConfig = {};
         await executeVerification(pluginConfig);
     });
+
+    it('should fail when destination is not valid', async () => {
+        const pluginConfig1 = {
+            source: 'docker-archive:test/resources/hello_world.tar',
+            destination: ['docker://ghcr.io/LukasWestholt/semantic-release-skopeo/semantic-release-skopeo:latest']
+        };
+        await executeVerification(pluginConfig1, 'EWRONG_DESTINATION');
+        const pluginConfig2 = {
+            source: 'docker-archive:test/resources/hello_world.tar',
+            destination: ['docker://ghcr.io/LukasWestholt/semantic-release-skopeo/semantic-release-skopeo:${version}']
+        };
+        await executeVerification(pluginConfig2, 'EWRONG_DESTINATION');
+    });
+
 }, 20000); // 20 seconds
