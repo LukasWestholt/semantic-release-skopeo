@@ -51,7 +51,7 @@ describe(
       const pluginConfig = {
         source: 'docker-archive:test/integ/resources/hello_world.tar',
       };
-      await executeVerification(pluginConfig, 'EMISSINGDESTINATION');
+      await executeVerification(pluginConfig, 'EMISSING_DESTINATION');
     });
 
     it('should fail when source is not set', async () => {
