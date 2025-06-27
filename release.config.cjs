@@ -10,7 +10,8 @@ module.exports = {
             "destination": [
                 "docker://ghcr.io/lukaswestholt/semantic-release-skopeo/semantic-release-skopeo:latest",
                 "docker://ghcr.io/lukaswestholt/semantic-release-skopeo/semantic-release-skopeo:${version}"
-            ]
+            ],
+            "copyArgs": ['--src-tls-verify=false'],
         }],
     ],
     releaseRules: [
