@@ -126,8 +126,8 @@ jobs:
             run: sudo apt-get -y update && sudo apt-get -y install skopeo
           - name: skopeo login
             run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-          - name: Install module itself
-            run: npm i @lukaswestholt/semantic-release-skopeo
+          #- name: Install module itself
+          #  run: npm i @lukaswestholt/semantic-release-skopeo
           - name: Run semantic-release
             run: npx semantic-release
             env:
