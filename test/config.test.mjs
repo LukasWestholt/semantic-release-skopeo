@@ -42,6 +42,11 @@ describe('Config Parser Environment Variable Handling', () => {
             expectedDest: ['registry.example.com/my-image:latest'],
         },
         {
+            description: 'Single string as environment variable',
+            env: { SKOPEO_DESTINATION: 'registry.example.com/my-image:${version}' },
+            expectedDest: ['registry.example.com/my-image:${version}'],
+        },
+        {
             description: 'Invalid JSON string (fallback to string array)',
             env: { SKOPEO_DESTINATION: '["registry.example.com/my-image:latest"' },
             expectedDest: ['["registry.example.com/my-image:latest"'],
