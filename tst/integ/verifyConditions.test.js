@@ -43,7 +43,7 @@ describe('Verify Conditions', function () {
     });
 
     it('should fail when destination is not set', async () => {
-        const pluginConfig = { source: 'docker://tst/integ/resources/test.Dockerfile' };
+        const pluginConfig = { source: 'docker-archive:tst/integ/resources/hello_world.tar' };
         await executeVerification(pluginConfig, 'EMISSINGDESTINATION');
     });
 
