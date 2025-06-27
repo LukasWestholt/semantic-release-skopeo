@@ -76,5 +76,5 @@ describe(
       await executeVerification(pluginConfig);
     });
   },
-  { timeout: 20000 } // 20 seconds
+  20000 // 20 seconds
 );
