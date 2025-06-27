@@ -16,10 +16,10 @@ From the [skopeo](https://github.com/containers/skopeo/blob/main/README.md) docs
 
 ## Benefits
 
--   **Daemonless**: Copies images without requiring a Docker daemon or docker-in-docker setup, ideal for CI/CD environments.
--   **Version-Aware Tagging**: Automatically tags your Docker images with semantic version numbers, ensuring consistency between your code and container versions.
--   **Cross-Platform Compatibility**: Works across different CI/CD platforms and environments that support Node.js and skopeo.
--   **Automated Publishing**: Pushes pre-built images to your specified Docker registry as part of the release process, reducing manual steps.
+- **Daemonless**: Copies images without requiring a Docker daemon or docker-in-docker setup, ideal for CI/CD environments.
+- **Version-Aware Tagging**: Automatically tags your Docker images with semantic version numbers, ensuring consistency between your code and container versions.
+- **Cross-Platform Compatibility**: Works across different CI/CD platforms and environments that support Node.js and skopeo.
+- **Automated Publishing**: Pushes pre-built images to your specified Docker registry as part of the release process, reducing manual steps.
 
 ## Quick Start
 

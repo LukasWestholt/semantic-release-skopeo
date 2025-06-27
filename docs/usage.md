@@ -71,8 +71,8 @@ The environment variable names are derived from the configuration options by con
 
 Anything more complex than a simple key/value pair should be represented as JSON. Some examples:
 
--   `SKOPEO_SOURCE="docker://registry.example.com/my-project/my-image:latest"`
--   `SKOPEO_DESTINATION='["docker://registry.example.com/my-project/my-image:\${version}","docker://registry.example.com/my-project/my-image:latest"]'`
+- `SKOPEO_SOURCE="docker://registry.example.com/my-project/my-image:latest"`
+- `SKOPEO_DESTINATION='["docker://registry.example.com/my-project/my-image:\${version}","docker://registry.example.com/my-project/my-image:latest"]'`
 
 Full list of configuration options and examples can be found in the [Configuration](./configuration.md) documentation.
 

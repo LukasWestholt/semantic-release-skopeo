@@ -1,26 +1,26 @@
+// eslint.config.js
+import js from "@eslint/js";
 import globals from "globals";
-import pluginJs from "@eslint/js";
 import pluginPrettier from "eslint-plugin-prettier";
-import prettierConfig from "eslint-config-prettier";
+import pluginVitest from "eslint-plugin-vitest";
 
+/** @type {import("eslint").Linter.FlatConfig[]} */
 export default [
+    js.configs.recommended,
     {
-        files: ["**/*.js"],
+        files: ["**/*.{js,mjs}"],
         languageOptions: {
+            ecmaVersion: "latest",
             sourceType: "module",
-            ecmaVersion: 2020,
             globals: {
                 ...globals.browser,
                 ...globals.node,
-                ...globals.mocha,
             },
         },
         plugins: {
             prettier: pluginPrettier,
         },
         rules: {
-            ...pluginJs.configs.recommended.rules,
-            ...prettierConfig.rules,
             "prettier/prettier": "error",
             "no-unused-vars": [
                 "error",
@@ -31,5 +31,9 @@ export default [
                 },
             ],
         },
+    },
+    {
+        files: ["**/*.{test,spec}.js"],
+        ...pluginVitest.configs.recommended,
     },
 ];
