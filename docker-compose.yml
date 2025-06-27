@@ -1,15 +1,10 @@
 services:
-    test-suite-verify-conditions:
-        build: .
-        command: npx mocha 'tst/integ/verifyConditions.test.js'
-        depends_on:
-            - mock-registry
-
-    test-suite-prepare-publish:
-        build: .
-        command: npx mocha 'tst/integ/preparePublish.test.js'
-        depends_on:
-            - mock-registry
-
     mock-registry:
-        image: registry:2.8.3
+        image: registry:2
+
+    test-runner:
+        build: .
+        depends_on:
+            - mock-registry
+        environment:
+            - NODE_ENV=test

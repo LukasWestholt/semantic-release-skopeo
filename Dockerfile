@@ -5,10 +5,11 @@ RUN dnf -y update && dnf -y install nodejs git && \
 
 WORKDIR /usr/src/app
 
-COPY package.json package-lock.json ./
+COPY package*.json ./
 
 RUN npm i
 
 COPY . .
 
 ENTRYPOINT []
+CMD ["npm", "run", "test"]

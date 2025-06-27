@@ -53,12 +53,7 @@ jobs:
           uses: addnab/docker-run-action@v3
           with:
             image: test-image:latest
-            run: npx mocha 'tst/integ/verifyConditions.test.js'
-        - name: Run verifyConditions tests
-          uses: addnab/docker-run-action@v3
-          with:
-            image: test-image:latest
-            run: npx mocha 'tst/integ/preparePublish.test.js'
+            options: --env NODE_ENV=test
 
   dry-run-release:
       name: Dry Run Release
