@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: '20'
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Run linter
         run: npm run lint
 
@@ -71,13 +71,11 @@ jobs:
             with:
                 node-version: '20'
           - name: Install dependencies
-            run: npm install
+            run: npm ci
           - name: Install skopeo
             run: sudo apt-get -y update && sudo apt-get -y install skopeo
           - name: skopeo login
             run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-          - name: Install module itself
-            run: npm i @lukaswestholt/semantic-release-skopeo
           - name: Run semantic-release in dry-run mode
             run: npx semantic-release --dry-run --no-ci
             env:
@@ -114,7 +112,7 @@ jobs:
             with:
                 node-version: '20'
           - name: Install dependencies
-            run: npm install
+            run: npm ci
           - name: Install skopeo
             run: sudo apt-get -y update && sudo apt-get -y install skopeo
           - name: skopeo login
