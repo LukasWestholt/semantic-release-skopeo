@@ -39,7 +39,7 @@ Add the plugin to your [semantic-release](https://semantic-release.gitbook.io/se
         [
             "@lukaswestholt/semantic-release-skopeo",
             {
-                "source": "docker://registry.example.com/my-project/my-image:latest", 
+                "source": "docker://registry.example.com/my-project/my-image:latest",
                 "destination": [
                     "docker://registry.example.com/my-project/my-image:${version}"
                 ]

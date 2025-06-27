@@ -1,13 +1,13 @@
-import globals from 'globals';
-import pluginJs from '@eslint/js';
-import pluginPrettier from 'eslint-plugin-prettier';
-import prettierConfig from 'eslint-config-prettier';
+import globals from "globals";
+import pluginJs from "@eslint/js";
+import pluginPrettier from "eslint-plugin-prettier";
+import prettierConfig from "eslint-config-prettier";
 
 export default [
     {
-        files: ['**/*.js'],
+        files: ["**/*.js"],
         languageOptions: {
-            sourceType: 'module',
+            sourceType: "module",
             ecmaVersion: 2020,
             globals: {
                 ...globals.browser,
@@ -21,13 +21,13 @@ export default [
         rules: {
             ...pluginJs.configs.recommended.rules,
             ...prettierConfig.rules,
-            'prettier/prettier': 'error',
-            'no-unused-vars': [
-                'error',
+            "prettier/prettier": "error",
+            "no-unused-vars": [
+                "error",
                 {
-                    argsIgnorePattern: '^_',
-                    varsIgnorePattern: '^_',
-                    caughtErrorsIgnorePattern: '^_',
+                    argsIgnorePattern: "^_",
+                    varsIgnorePattern: "^_",
+                    caughtErrorsIgnorePattern: "^_",
                 },
             ],
         },
