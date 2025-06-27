@@ -12,7 +12,7 @@ From the [skopeo](https://github.com/containers/skopeo/blob/main/README.md) docs
 
 > skopeo is a command line utility that performs various operations on container images and image repositories.
 > skopeo does not require a daemon to be running to perform its operations.
-> Copying an image from and to various storage mechanisms. For example you can copy images from one registry to another, without requiring privilege.
+> Copying an image from and to various storage mechanisms. For example, you can copy images from one registry to another, without requiring privilege.
 
 ## Benefits
 
@@ -49,7 +49,7 @@ Add the plugin to your [semantic-release](https://semantic-release.gitbook.io/se
 }
 ```
 
-This package must be run in an environment that has skopeo already installed. We provide a image with all the necessary dependencies pre-installed, which we strongly recommend using. Pull the container image:
+This package must be run in an environment that has skopeo already installed. We provide an image with all the necessary dependencies pre-installed, which we strongly recommend using. Pull the container image:
 
 ```bash
 docker pull ghcr.io/lukaswestholt/semantic-release-skopeo:latest
@@ -75,7 +75,7 @@ For more advanced usage and detailed configuration options as well as guidance o
 
 ## Contributing
 
-We welcome contributions to semantic-release-skopeo! Simply raise and Issue or a PR and we can review it ASAP.
+We welcome contributions to semantic-release-skopeo! Simply raise and Issue or a PR, and we can review it ASAP.
 
 ## License
 
