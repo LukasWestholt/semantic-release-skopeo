@@ -9,7 +9,7 @@ on:
             - main
 
 env:
-  IMAGE_NAME: ${{ github.repository }}
+  REPO_NAME: ${{ github.repository }}
 
 jobs:
   lint:
@@ -98,6 +98,8 @@ jobs:
       steps:
           - name: Checkout repository
             uses: actions/checkout@v4
+          - name: Lowercase REPO_NAME and save it
+            run: echo "IMAGE_NAME=$(echo "${{ env.REPO_NAME }}" | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_ENV"
           - name: Build Docker image
             id: push
             uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
@@ -106,7 +108,7 @@ jobs:
               push: false
               load: true
               target: base
-              tags: ${{ env.IMAGE_NAME }}:latest
+              tags: $IMAGE_NAME:latest
           - name: Set up Node.js
             uses: actions/setup-node@v2
             with:
