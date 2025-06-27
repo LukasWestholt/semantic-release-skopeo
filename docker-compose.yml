@@ -1,6 +1,6 @@
 services:
     mock-registry:
-        image: registry:2
+        image: registry:3
 
     test-runner:
         build: .
@@ -9,6 +9,5 @@ services:
         depends_on:
             - mock-registry
         environment:
-            - NODE_ENV=test
-        command:
-            -   npm run test-coverage
+            NODE_ENV: test
+        command: npm run test

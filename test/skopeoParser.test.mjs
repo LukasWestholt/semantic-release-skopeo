@@ -11,10 +11,10 @@ describe('parseSkopeoDestination', () => {
   });
 
   it('parses a valid local dir destination', () => {
-    const input = 'dir:/tmp/myimage';
+    const input = 'dir:lib';
     const result = parseSkopeoDestination(input);
     expect(result.transport).toBe('dir');
-    expect(result.details).toBe('/tmp/myimage');
+    expect(result.details).toBe('lib');
     expect(result.errors.length).toBe(0);
   });
 
@@ -28,19 +28,19 @@ describe('parseSkopeoDestination', () => {
   it('detects forbidden characters in details', () => {
     const input = 'docker://registry.example.com/repo:bad tag!';
     const result = parseSkopeoDestination(input);
-    expect(result.errors).toContain("Details contain forbidden characters.");
+    expect(result.errors).toContain("Details contain forbidden characters: //registry.example.com/repo:bad tag!");
   });
 
   it('detects uppercase characters in details', () => {
     const input = 'docker://ghcr.io/LukasWestholt/semantic-release-skopeo/semantic-release-skopeo:latest';
     const result = parseSkopeoDestination(input);
-    expect(result.errors).toContain("Details contain forbidden characters.");
+    expect(result.errors).toContain("Details contain forbidden characters: //ghcr.io/LukasWestholt/semantic-release-skopeo/semantic-release-skopeo:latest");
   });
 
-  it('detects non-absolute path for local targets', () => {
+  it('detects non-existing path for local targets', () => {
     const input = 'dir:relative/path';
     const result = parseSkopeoDestination(input);
-    expect(result.errors).toContain("Path is not absolute: 'relative/path'");
+    expect(result.errors).toContain("File does not exist: '/usr/src/app/relative/path'");
   });
 
   it('detects missing colon in destination', () => {

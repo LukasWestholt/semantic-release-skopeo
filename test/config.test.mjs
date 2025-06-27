@@ -1,6 +1,6 @@
 // test/config.test.mjs
 import { describe, it, beforeEach, afterEach, expect } from 'vitest';
-import { parseConfig, toSkopeoArgs } from '../lib/config.mjs';
+import { parseConfig, toSkopeoCopyArgs } from '../lib/config.mjs';
 
 describe('Config Parser Environment Variable Handling', () => {
   const ORIGINAL_ENV = { ...process.env };
@@ -56,11 +56,7 @@ describe('Config Parser Environment Variable Handling', () => {
 
       const pluginConfig = {};
       const config = parseConfig(pluginConfig);
-      const skopeoArgs = toSkopeoArgs(config);
-
-      // Optional: Log if needed for debug
-      // console.log('Parsed Config:', config);
-      // console.log('skopeo Args:', skopeoArgs);
+      const skopeoArgs = toSkopeoCopyArgs(config);
 
       expect(config.destination).toEqual(expectedDest);
     });

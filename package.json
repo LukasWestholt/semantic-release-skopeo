@@ -1,54 +1,60 @@
 {
-    "name": "@lukaswestholt/semantic-release-skopeo",
-    "version": "0.0.0-semantically-released",
-    "description": "This is a plugin for semantic-release that copies OCI images to a custom registry using daemonless open-source tool skopeo.",
-    "main": "index.mjs",
-    "type": "module",
-    "engines": {
-        "node": ">=20.8.1"
-    },
-    "scripts": {
-        "test": "vitest",
-        "test-coverage": "vitest run --coverage.enabled --coverage.reporter=text --coverage.reporter=html --coverage.all --coverage.clean=false",
-        "compose-test": "docker compose up --build",
-        "lint": "eslint ."
-    },
-    "keywords": [
-        "semantic-release",
-        "skopeo",
-        "dockerless",
-        "daemonless",
-        "container",
-        "ci",
-        "cd"
-    ],
-    "author": "Lukas Westholt <support@lukaswestholt.de>",
-    "license": "MIT",
-    "dependencies": {
-        "@semantic-release/error": "^4.0.0",
-        "execa": "^9.3.0"
-    },
-    "devDependencies": {
-        "@eslint/js": "^9.8.0",
-        "@semantic-release/release-notes-generator": "^14.0.1",
-        "@vitest/coverage-v8": "^3.2.4",
-        "eslint": "^9.8.0",
-        "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-prettier": "^5.2.1",
-        "globals": "^15.9.0",
-        "prettier": "^3.3.3",
-        "semantic-release": "^24.0.0",
-        "vitest": "^3.2.4"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/lukaswestholt/semantic-release-skopeo.git"
-    },
-    "publishConfig": {
-        "access": "public"
-    },
-    "bugs": {
-        "url": "https://github.com/lukaswestholt/semantic-release-skopeo/issues"
-    },
-    "homepage": "https://github.com/lukaswestholt/semantic-release-skopeo#readme"
+  "name": "@lukaswestholt/semantic-release-skopeo",
+  "version": "0.0.0-semantically-released",
+  "description": "This is a plugin for semantic-release that copies OCI images to a custom registry using daemonless open-source tool skopeo.",
+  "main": "index.mjs",
+  "type": "module",
+  "engines": {
+    "node": ">=20.8.1"
+  },
+  "scripts": {
+    "test": "vitest",
+    "test-coverage": "vitest run --coverage.enabled --coverage.reporter=text --coverage.reporter=html --coverage.all --coverage.clean=false",
+    "compose-test": "docker compose up --build",
+    "lint": "eslint .",
+    "prepare": "husky"
+  },
+  "keywords": [
+    "semantic-release",
+    "skopeo",
+    "dockerless",
+    "daemonless",
+    "container",
+    "ci",
+    "cd"
+  ],
+  "author": "Lukas Westholt <support@lukaswestholt.de>",
+  "license": "MIT",
+  "dependencies": {
+    "@semantic-release/error": "^4.0.0",
+    "execa": "^9.3.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.8.0",
+    "@semantic-release/release-notes-generator": "^14.0.1",
+    "@vitest/coverage-v8": "^3.2.4",
+    "eslint": "^9.29.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "globals": "^15.9.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
+    "prettier": "^3.3.3",
+    "semantic-release": "^24.0.0",
+    "vitest": "^3.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lukaswestholt/semantic-release-skopeo.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "bugs": {
+    "url": "https://github.com/lukaswestholt/semantic-release-skopeo/issues"
+  },
+  "homepage": "https://github.com/lukaswestholt/semantic-release-skopeo#readme",
+  "lint-staged": {
+    "**/*.{js,ts,jsx,tsx}": "eslint --fix"
+  }
 }
