@@ -20,7 +20,7 @@ which automates the release process.
         [
             "@lukaswestholt/semantic-release-skopeo",
             {
-                "source": "docker://registry.example.com/my-project/my-image:latest", 
+                "source": "docker://registry.example.com/my-project/my-image:latest",
                 "destination": [
                     "docker://registry.example.com/my-project/my-image:${version}"
                 ]
@@ -47,15 +47,15 @@ plugins:
 
 ```javascript
 module.exports = {
-    branches: ['main'],
+    branches: ["main"],
     plugins: [
-        '@semantic-release/commit-analyzer',
+        "@semantic-release/commit-analyzer",
         [
-            '@lukaswestholt/semantic-release-skopeo',
+            "@lukaswestholt/semantic-release-skopeo",
             {
-                source: "docker://registry.example.com/my-project/my-image:latest", 
+                source: "docker://registry.example.com/my-project/my-image:latest",
                 destination: [
-                    "docker://registry.example.com/my-project/my-image:${version}"
+                    "docker://registry.example.com/my-project/my-image:${version}",
                 ],
             },
         ],
@@ -71,8 +71,8 @@ The environment variable names are derived from the configuration options by con
 
 Anything more complex than a simple key/value pair should be represented as JSON. Some examples:
 
--   `SKOPEO_SOURCE="docker://registry.example.com/my-project/my-image:latest"`
--   `SKOPEO_DESTINATION='["docker://registry.example.com/my-project/my-image:\${version}","docker://registry.example.com/my-project/my-image:latest"]'`
+- `SKOPEO_SOURCE="docker://registry.example.com/my-project/my-image:latest"`
+- `SKOPEO_DESTINATION='["docker://registry.example.com/my-project/my-image:\${version}","docker://registry.example.com/my-project/my-image:latest"]'`
 
 Full list of configuration options and examples can be found in the [Configuration](./configuration.md) documentation.
 
@@ -83,7 +83,10 @@ Full list of configuration options and examples can be found in the [Configurati
     ```json
     {
         "branches": ["main"],
-        "plugins": ["@semantic-release/commit-analyzer", "@lukaswestholt/semantic-release-skopeo"]
+        "plugins": [
+            "@semantic-release/commit-analyzer",
+            "@lukaswestholt/semantic-release-skopeo"
+        ]
     }
     ```
 
@@ -213,10 +216,10 @@ jobs:
         steps:
             - name: Checkout code
               uses: actions/checkout@v3
-            
+
             - name: Skopeo login
               run: |
-                skopeo login -u ${{ secrets.REGISTRY_USER }} -p ${{ secrets.REGISTRY_PASSWORD }} localhost:5000
+                  skopeo login -u ${{ secrets.REGISTRY_USER }} -p ${{ secrets.REGISTRY_PASSWORD }} localhost:5000
 
             - name: Release
               run: npx semantic-release

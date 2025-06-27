@@ -1,17 +1,17 @@
 // test/verifyConditions.test.mjs
-import { describe, it, beforeEach, afterEach, expect, vi } from 'vitest';
-import SemanticReleaseError from '@semantic-release/error';
+import { describe, it, beforeEach, afterEach, expect, vi } from "vitest";
+import SemanticReleaseError from "@semantic-release/error";
 
-describe('Verify missing skopeo', () => {
+describe("Verify missing skopeo", () => {
     let originalEnv;
 
     beforeEach(() => {
         originalEnv = { ...process.env };
-        vi.doMock('execa', () => {
+        vi.doMock("execa", () => {
             return {
                 execa: () => {
-                    const err = new Error('command not found');
-                    err.code = 'ENOENT';
+                    const err = new Error("command not found");
+                    err.code = "ENOENT";
                     throw err;
                 },
             };
@@ -23,15 +23,17 @@ describe('Verify missing skopeo', () => {
         vi.restoreAllMocks();
     });
 
-    it('should fail when skopeo is not installed', async () => {
+    it("should fail when skopeo is not installed", async () => {
         // Dynamically import after mocking
-        const { verifyConditions: mockedVerifyConditions } = await import('../lib/verifyConditions.mjs');
-
-        await expect(mockedVerifyConditions({}, { logger: console })).rejects.toMatchObject(
-            {
-                code: 'EMISSINGSKOPEO',
-                constructor: SemanticReleaseError,
-            },
+        const { verifyConditions: mockedVerifyConditions } = await import(
+            "../lib/verifyConditions.mjs"
         );
+
+        await expect(
+            mockedVerifyConditions({}, { logger: console }),
+        ).rejects.toMatchObject({
+            code: "EMISSINGSKOPEO",
+            constructor: SemanticReleaseError,
+        });
     });
 }, 20000); // 20 seconds

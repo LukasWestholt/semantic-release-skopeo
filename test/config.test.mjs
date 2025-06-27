@@ -1,8 +1,8 @@
 // test/config.test.mjs
-import { describe, it, beforeEach, afterEach, expect } from 'vitest';
-import { parseConfig } from '../lib/config.mjs';
+import { describe, it, beforeEach, afterEach, expect } from "vitest";
+import { parseConfig } from "../lib/config.mjs";
 
-describe('Config Parser Environment Variable Handling', () => {
+describe("Config Parser Environment Variable Handling", () => {
     const ORIGINAL_ENV = { ...process.env };
 
     beforeEach(() => {
@@ -15,44 +15,48 @@ describe('Config Parser Environment Variable Handling', () => {
 
     const testCases = [
         {
-            description: 'JSON array as environment variable',
+            description: "JSON array as environment variable",
             env: {
                 SKOPEO_DESTINATION:
                     '["registry.example.com/my-image:${version}","registry.example.com/my-image:latest"]',
             },
             expectedDest: [
-                'registry.example.com/my-image:${version}',
-                'registry.example.com/my-image:latest',
+                "registry.example.com/my-image:${version}",
+                "registry.example.com/my-image:latest",
             ],
         },
         {
-            description: 'Comma-separated string as environment variable',
+            description: "Comma-separated string as environment variable",
             env: {
                 SKOPEO_DESTINATION:
-                    'registry.example.com/my-image:${version},registry.example.com/my-image:latest',
+                    "registry.example.com/my-image:${version},registry.example.com/my-image:latest",
             },
             expectedDest: [
-                'registry.example.com/my-image:${version}',
-                'registry.example.com/my-image:latest',
+                "registry.example.com/my-image:${version}",
+                "registry.example.com/my-image:latest",
             ],
         },
         {
-            description: 'Single string as environment variable',
-            env: { SKOPEO_DESTINATION: 'registry.example.com/my-image:latest' },
-            expectedDest: ['registry.example.com/my-image:latest'],
+            description: "Single string as environment variable",
+            env: { SKOPEO_DESTINATION: "registry.example.com/my-image:latest" },
+            expectedDest: ["registry.example.com/my-image:latest"],
         },
         {
-            description: 'Single string as environment variable',
-            env: { SKOPEO_DESTINATION: 'registry.example.com/my-image:${version}' },
-            expectedDest: ['registry.example.com/my-image:${version}'],
+            description: "Single string as environment variable",
+            env: {
+                SKOPEO_DESTINATION: "registry.example.com/my-image:${version}",
+            },
+            expectedDest: ["registry.example.com/my-image:${version}"],
         },
         {
-            description: 'Invalid JSON string (fallback to string array)',
-            env: { SKOPEO_DESTINATION: '["registry.example.com/my-image:latest"' },
+            description: "Invalid JSON string (fallback to string array)",
+            env: {
+                SKOPEO_DESTINATION: '["registry.example.com/my-image:latest"',
+            },
             expectedDest: ['["registry.example.com/my-image:latest"'],
         },
         {
-            description: 'No environment variable set',
+            description: "No environment variable set",
             env: {},
             expectedDest: undefined,
         },

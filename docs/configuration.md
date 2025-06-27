@@ -88,7 +88,6 @@ You can use any [transport type](https://github.com/containers/skopeo/blob/main/
 SKOPEO_DESTINATION='["docker://registry.example.com/my-project/my-image:\${version}","docker://registry.example.com/my-project/my-image:latest", "docker-archive:archive.tar"]'
 ```
 
-
 ### force
 
 This flag forces images to overwrite existing ones.
