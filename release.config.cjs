@@ -9,6 +9,13 @@ module.exports = {
             "source": "docker-daemon:lukaswestholt/semantic-release-skopeo:latest",
             "destination": [
                 "docker://ghcr.io/lukaswestholt/semantic-release-skopeo/semantic-release-skopeo:latest",
+            ],
+            "force": true,
+            "copyArgs": ['--src-tls-verify=false'],
+        }],
+        ['./index.mjs', {
+            "source": "docker-daemon:lukaswestholt/semantic-release-skopeo:latest",
+            "destination": [
                 "docker://ghcr.io/lukaswestholt/semantic-release-skopeo/semantic-release-skopeo:${version}"
             ],
             "copyArgs": ['--src-tls-verify=false'],
