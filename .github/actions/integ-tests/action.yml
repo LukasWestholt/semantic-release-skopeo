@@ -1,5 +1,0 @@
-name: 'semantic-release-skopeo containerized integration tests'
-description: 'Intended for internal use only. Runs the integration tests in a containerized environment.'
-runs:
-    using: 'docker'
-    image: 'Dockerfile'

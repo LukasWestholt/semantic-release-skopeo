@@ -1,0 +1,12 @@
+.github/
+.idea/
+docs/
+.dockerignore
+.gitignore
+.npmrc
+.prettierrc
+docker-compose.yml
+Dockerfile
+eslint.config.js
+README.md
+release.config.cjs
