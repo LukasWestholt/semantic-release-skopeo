@@ -4,7 +4,11 @@ services:
 
     test-runner:
         build: .
+        volumes:
+            - ./coverage:/usr/src/app/coverage
         depends_on:
             - mock-registry
         environment:
             - NODE_ENV=test
+        command:
+            -   npm run test-coverage

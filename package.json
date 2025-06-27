@@ -9,6 +9,7 @@
     },
     "scripts": {
         "test": "vitest",
+        "test-coverage": "vitest run --coverage.enabled --coverage.reporter=text --coverage.reporter=html --coverage.all --coverage.clean=false",
         "compose-test": "docker compose up --build",
         "lint": "eslint ."
     },
@@ -30,6 +31,7 @@
     "devDependencies": {
         "@eslint/js": "^9.8.0",
         "@semantic-release/release-notes-generator": "^14.0.1",
+        "@vitest/coverage-v8": "^3.2.4",
         "eslint": "^9.8.0",
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-prettier": "^5.2.1",
