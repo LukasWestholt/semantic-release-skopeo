@@ -65,6 +65,10 @@ docker run --rm \
     npx semantic-release
 ```
 
+## Private registries
+
+Just use `skopeo login <...>` in a pre-step. See https://github.com/containers/skopeo/blob/main/docs/skopeo-login.1.md.
+
 ## Advanced Usage
 
 For more advanced usage and detailed configuration options as well as guidance on multiple CI environments and documentation for all supported flags, please refer to the [Usage Guide](docs/usage.md) or the [Configuration Guide](docs/configuration.md).
