@@ -6,10 +6,10 @@ module.exports = {
         '@semantic-release/npm',
         '@semantic-release/github',
         ['@lukaswestholt/semantic-release-skopeo', {
-            "source": "docker-daemon:semantic-release-skopeo:latest",
+            "source": "docker-daemon:lukaswestholt/semantic-release-skopeo:latest",
             "destination": [
-                "docker://ghcr.io/LukasWestholt/semantic-release-skopeo/semantic-release-skopeo:latest",
-                "docker://ghcr.io/LukasWestholt/semantic-release-skopeo/semantic-release-skopeo:${version}"
+                "docker://ghcr.io/lukaswestholt/semantic-release-skopeo/semantic-release-skopeo:latest",
+                "docker://ghcr.io/lukaswestholt/semantic-release-skopeo/semantic-release-skopeo:${version}"
             ]
         }],
     ],
