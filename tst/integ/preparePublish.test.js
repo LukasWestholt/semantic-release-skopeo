@@ -19,11 +19,11 @@ describe('Comprehensive Test with All Arguments', function () {
 
         // Comprehensive configuration with all possible flags
         pluginConfig = {
-            args: ['TEST_ARG=TEST'],
-            source: 'mock-registry:5000/my-project/my-image:latest',
+            args: ['--additional-tag=test:latest', '--dest-tls-verify=false'],
+            source: 'docker-archive:tst/integ/resources/hello_world.tar',
             destination: [
-                'mock-registry:5000/my-project/my-image:${version}',
-                'mock-registry:5000/my-project/my-image:latest',
+                'docker://mock-registry:5000/my-project/my-image:${version}',
+                'docker://mock-registry:5000/my-project/my-image:latest',
             ],
             force: true,
             pushIgnoreImmutableTagErrors: true,

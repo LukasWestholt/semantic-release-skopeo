@@ -47,7 +47,7 @@ You can use any [transport type](https://github.com/containers/skopeo/blob/main/
     "plugins": [
         "@lukaswestholt/semantic-release-skopeo",
         {
-            "source": "docker-archive://archive.tar"
+            "source": "docker-archive:archive.tar"
         }
     ]
 }
@@ -56,7 +56,7 @@ You can use any [transport type](https://github.com/containers/skopeo/blob/main/
 **Environment variable:**
 
 ```shell
-SKOPEO_SOURCE='docker-archive://archive.tar'
+SKOPEO_SOURCE='docker-archive:archive.tar'
 ```
 
 ### destination
@@ -75,7 +75,7 @@ You can use any [transport type](https://github.com/containers/skopeo/blob/main/
             "destination": [
                 "docker://registry.example.com/my-project/my-image:${version}",
                 "docker://registry.example.com/my-project/my-image:latest",
-                "docker-archive://archive.tar"
+                "docker-archive:archive.tar"
             ]
         }
     ]
@@ -85,7 +85,7 @@ You can use any [transport type](https://github.com/containers/skopeo/blob/main/
 **Environment variable:**
 
 ```shell
-SKOPEO_DESTINATION='["docker://registry.example.com/my-project/my-image:\${version}","docker://registry.example.com/my-project/my-image:latest", "docker-archive://archive.tar"]'
+SKOPEO_DESTINATION='["docker://registry.example.com/my-project/my-image:\${version}","docker://registry.example.com/my-project/my-image:latest", "docker-archive:archive.tar"]'
 ```
 
 

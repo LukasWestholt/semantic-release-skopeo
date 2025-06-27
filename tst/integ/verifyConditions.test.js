@@ -56,14 +56,14 @@ describe('Verify Conditions', function () {
 
     it('should pass with valid configuration', async () => {
         const pluginConfig = {
-            source: 'docker-archive://tst/integ/resources/hello_world.tar',
+            source: 'docker-archive:tst/integ/resources/hello_world.tar',
             destination: ['docker://registry.example.com/my-image:${version}'],
         };
         await executeVerification(pluginConfig);
     });
 
     it('should verify required environment variables are set', async () => {
-        process.env.SKOPEO_SOURCE = 'docker-archive://tst/integ/resources/hello_world.tar';
+        process.env.SKOPEO_SOURCE = 'docker-archive:tst/integ/resources/hello_world.tar';
         process.env.SKOPEO_DESTINATION = 'docker://registry.example.com/my-image:${version}';
         const pluginConfig = {};
         await executeVerification(pluginConfig);

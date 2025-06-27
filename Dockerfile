@@ -7,5 +7,6 @@ WORKDIR /app
 
 COPY package.json package-lock.json ./
 
-ENTRYPOINT []
 RUN npm i
+
+ENTRYPOINT []
