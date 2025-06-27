@@ -19,7 +19,7 @@ You can use any [argument](https://github.com/containers/skopeo/blob/855cfb2f230
     "plugins": [
         "@lukaswestholt/semantic-release-skopeo",
         {
-            "args": [
+            "copyArgs": [
                 "MY_VAR=value with spaces",
                 "MY_VAR_2=ValueWithNoSpaces"
             ]

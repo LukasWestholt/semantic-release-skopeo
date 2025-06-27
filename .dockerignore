@@ -1,6 +1,7 @@
 .github/
 .idea/
 docs/
+coverage/
 .dockerignore
 .gitignore
 .npmrc
