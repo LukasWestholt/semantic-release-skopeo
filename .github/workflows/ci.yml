@@ -88,12 +88,12 @@ jobs:
         - name: Run verifyConditions tests
           uses: addnab/docker-run-action@v3
           with:
-            image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.push.outputs.digest }}
+            image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
             run: npx mocha 'tst/integ/verifyConditions.test.js'
         - name: Run verifyConditions tests
           uses: addnab/docker-run-action@v3
           with:
-            image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.push.outputs.digest }}
+            image: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
             run: npx mocha 'tst/integ/preparePublish.test.js'
 
   dry-run-release:
