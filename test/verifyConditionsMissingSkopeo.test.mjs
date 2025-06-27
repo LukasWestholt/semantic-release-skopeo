@@ -9,13 +9,13 @@ describe('Verify missing skopeo', () => {
         originalEnv = { ...process.env };
         vi.doMock('execa', () => {
             return {
-              execa: () => {
-                const err = new Error('command not found');
-                err.code = 'ENOENT';
-                throw err;
-              },
+                execa: () => {
+                    const err = new Error('command not found');
+                    err.code = 'ENOENT';
+                    throw err;
+                },
             };
-          });
+        });
     });
 
     afterEach(() => {
@@ -27,11 +27,11 @@ describe('Verify missing skopeo', () => {
         // Dynamically import after mocking
         const { verifyConditions: mockedVerifyConditions } = await import('../lib/verifyConditions.mjs');
 
-        await expect(mockedVerifyConditions({ }, { logger: console })).rejects.toMatchObject(
+        await expect(mockedVerifyConditions({}, { logger: console })).rejects.toMatchObject(
             {
                 code: 'EMISSINGSKOPEO',
                 constructor: SemanticReleaseError,
-            }
+            },
         );
     });
 }, 20000); // 20 seconds

@@ -20,11 +20,11 @@ describe('Verify Conditions', () => {
                 {
                     code: expectedError,
                     constructor: SemanticReleaseError,
-                }
+                },
             );
         } else {
             await expect(
-                verifyConditions(pluginConfig, { logger: console })
+                verifyConditions(pluginConfig, { logger: console }),
             ).resolves.not.toThrow();
         }
     };
