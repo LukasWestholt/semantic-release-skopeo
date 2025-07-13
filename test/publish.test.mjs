@@ -67,4 +67,32 @@ describe("Comprehensive Test with All Arguments", () => {
             constructor: SemanticReleaseError,
         });
     }, 600_000); // 10-minute timeout
+
+    it("should execute publish with all possible version variables", async () => {
+        const pluginConfigNew = { ...pluginConfig };
+        pluginConfigNew.destination = [
+            "docker://mock-registry:5000/my-project" +
+                Date.now().toString() +
+                "/my-image:${version}",
+            "docker://mock-registry:5000/my-project" +
+                Date.now().toString() +
+                "/my-image:${majorVersion}",
+            "docker://mock-registry:5000/my-project" +
+                Date.now().toString() +
+                "/my-image:${minorVersion}",
+        ];
+        await expect(publish(pluginConfigNew, context)).resolves.not.toThrow();
+    }, 600_000); // 10-minute timeout
+
+    it("should fail with impossible variables", async () => {
+        const pluginConfigNew = { ...pluginConfig };
+        pluginConfigNew.destination = [
+            "docker://mock-registry:5000/my-project" +
+                Date.now().toString() +
+                "/my-image:${versionFail}",
+        ];
+        await expect(publish(pluginConfigNew, context)).rejects.toThrowError(
+            expect.objectContaining({ code: "EIMAGE_CHECK_FAILED" }),
+        );
+    }, 600_000); // 10-minute timeout
 });
