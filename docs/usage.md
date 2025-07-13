@@ -119,6 +119,87 @@ Full list of configuration options and examples can be found in the [Configurati
                       SKOPEO_DESTINATION: '["docker://registry.example.com/my-project/my-image:\${version}","docker://registry.example.com/my-project/my-image:latest"]'
     ```
 
+### Using `nextRelease` version variables
+
+You can use version variables in the `destination` to automatically tag images based on the `nextRelease` version:
+
+| Variable          | Description           | Example |
+| ----------------- | --------------------- | ------- |
+| `${version}`      | Full semantic version | `1.2.3` |
+| `${majorVersion}` | Major version only    | `1`     |
+| `${minorVersion}` | Major + minor version | `1.2`   |
+
+**Example:**
+
+```json
+{
+    "plugins": [
+        [
+            "@lukaswestholt/semantic-release-skopeo",
+            {
+                "source": "docker://registry.example.com/my-project/my-image:latest",
+                "destination": [
+                    "docker://registry.example.com/my-project/my-image:${version}"
+                ]
+            }
+        ]
+    ]
+}
+```
+
+This will copy the image to `docker://registry.example.com/my-project/my-image:1.2.3`.
+You can also add tags like `1` and `1.2` by adding multiple destinations:
+
+```json
+{
+    "plugins": [
+        [
+            "@lukaswestholt/semantic-release-skopeo",
+            {
+                "source": "docker://registry.example.com/my-project/my-image:latest",
+                "destination": [
+                    "docker://registry.example.com/my-project/my-image:${version}",
+                    "docker://registry.example.com/my-project/my-image:${majorVersion}",
+                    "docker://registry.example.com/my-project/my-image:${minorVersion}"
+                ]
+            }
+        ]
+    ]
+}
+```
+
+---
+
+### Using external environment variables
+
+You can also reference external environment variables in `source` and `destination` using `${VAR}` or `$VAR`.
+These are resolved at runtime.
+
+**Example:**
+
+```json
+{
+    "plugins": [
+        [
+            "@lukaswestholt/semantic-release-skopeo",
+            {
+                "source": "docker://registry.example.com/my-project/my-image:latest",
+                "destination": [
+                    "docker://registry.example.com/my-project/my-image:${BITBUCKET_COMMIT}"
+                ]
+            }
+        ]
+    ]
+}
+```
+
+In this example, `${BITBUCKET_COMMIT}` will be replaced with the commit hash from your CI environment.
+
+---
+
+**Note:** If both `nextRelease` variables and environment variables have the same syntax (`${}`),
+the plugin will resolve `nextRelease` variables first, then environment variables.
+
 ## Example Workflows
 
 Here are some examples showing how to integrate `semantic-release` and the `@lukaswestholt/semantic-release-skopeo` plugin into various CI/CD pipelines.
