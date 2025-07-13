@@ -85,6 +85,17 @@ describe("Config Parser Environment Variable Handling", () => {
                 "docker://mock-registry:5000/my-project/my-image:${minorVersion}",
             ],
         },
+        {
+            description:
+                "Use external environment variables named like version variable",
+            env: {
+                minorVersion: "DEFINED",
+            },
+            config: {
+                destination: ["registry.example.com/my-image:${minorVersion}"],
+            },
+            expectedDest: ["registry.example.com/my-image:${minorVersion}"],
+        },
     ];
 
     for (const { description, env, config, expectedDest } of testCases) {

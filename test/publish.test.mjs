@@ -84,7 +84,7 @@ describe("Comprehensive Test with All Arguments", () => {
         await expect(publish(pluginConfigNew, context)).resolves.not.toThrow();
     }, 600_000); // 10-minute timeout
 
-    it("should fail with impossible variables", async () => {
+    it("should fail with unknown variables", async () => {
         const pluginConfigNew = { ...pluginConfig };
         pluginConfigNew.destination = [
             "docker://mock-registry:5000/my-project" +
@@ -92,7 +92,7 @@ describe("Comprehensive Test with All Arguments", () => {
                 "/my-image:${versionFail}",
         ];
         await expect(publish(pluginConfigNew, context)).rejects.toThrowError(
-            expect.objectContaining({ code: "EIMAGE_CHECK_FAILED" }),
+            "Environment variable versionFail is not defined",
         );
     }, 600_000); // 10-minute timeout
 });
