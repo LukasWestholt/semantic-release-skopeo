@@ -60,18 +60,43 @@ describe("Config Parser Environment Variable Handling", () => {
             env: {},
             expectedDest: undefined,
         },
+        {
+            description: "Use external environment variables",
+            env: {
+                REGISTRY_URL: "mock-registry:5000",
+                DOCKER_IMAGE_NAME: "my-project/my-image",
+                BITBUCKET_COMMIT: "3b2c1a4f5e6d7b8c9d0e1f2a3b4c5d6e7f8a9b0c",
+                BITBUCKET_BRANCH: "main",
+            },
+            config: {
+                destination: [
+                    "docker://$REGISTRY_URL/$DOCKER_IMAGE_NAME:${BITBUCKET_COMMIT}",
+                    "docker://$REGISTRY_URL/$DOCKER_IMAGE_NAME:${BITBUCKET_BRANCH}",
+                    "docker://$REGISTRY_URL/$DOCKER_IMAGE_NAME:${version}",
+                    "docker://$REGISTRY_URL/$DOCKER_IMAGE_NAME:${majorVersion}",
+                    "docker://$REGISTRY_URL/$DOCKER_IMAGE_NAME:${minorVersion}",
+                ],
+            },
+            expectedDest: [
+                "docker://mock-registry:5000/my-project/my-image:3b2c1a4f5e6d7b8c9d0e1f2a3b4c5d6e7f8a9b0c",
+                "docker://mock-registry:5000/my-project/my-image:main",
+                "docker://mock-registry:5000/my-project/my-image:${version}",
+                "docker://mock-registry:5000/my-project/my-image:${majorVersion}",
+                "docker://mock-registry:5000/my-project/my-image:${minorVersion}",
+            ],
+        },
     ];
 
-    for (const { description, env, expectedDest } of testCases) {
+    for (const { description, env, config, expectedDest } of testCases) {
         it(description, () => {
             // Set environment variables
             Object.entries(env).forEach(([key, val]) => {
                 process.env[key] = val;
             });
 
-            const pluginConfig = {};
-            const config = parseConfig(pluginConfig);
-            expect(config.destination).toEqual(expectedDest);
+            const pluginConfig = config ?? {};
+            const parsedConfig = parseConfig(pluginConfig);
+            expect(parsedConfig.destination).toEqual(expectedDest);
         });
     }
 });
